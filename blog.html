@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .blogroll {
+            margin-top: 2em;
+        }
+        .blog-entry {
+            margin-bottom: 2em;
+            padding: 1em;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .blog-entry h3 {
+            margin-top: 0;
+        }
+        .blog-entry a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .blog-entry a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #dc3545;
+            padding: 1em;
+            border: 1px solid #dc3545;
+            border-radius: 4px;
+            margin: 1em 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Blogroll</h1>
+        <h2><a href="index.html">Back Home</a></h2>
+        <div class="section blogroll">
+            <div id="blog-list">
+                <div class="loading">Loading blogs...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch and render the blogs
+        async function renderBlogPosts() {
+            const blogList = document.getElementById('blog-list');
+            
+            try {
+                // Fetch the blogs.json file
+                const response = await fetch('blogs.json');
+                
+                // Check if the response is ok
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                // Parse the JSON response
+                const blogs = await response.json();
+                
+                // Clear the loading message
+                blogList.innerHTML = '';
+                
+                // Check if blogs array exists and has items
+                if (blogs && Array.isArray(blogs) && blogs.length > 0) {
+                    blogs.forEach(blog => {
+                        const blogEntry = document.createElement('div');
+                        blogEntry.className = 'blog-entry';
+                        
+                        blogEntry.innerHTML = `
+                            <h3>${blog.title}</h3>
+                            <p>${blog.description}</p>
+                            <a href="${blog.link}" target="_blank">Read More</a>
+                        `;
+                        
+                        blogList.appendChild(blogEntry);
+                    });
+                } else {
+                    blogList.innerHTML = '<p>No blogs available at the moment.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading blogs:', error);
+                blogList.innerHTML = `
+                    <div class="error-message">
+                        <p>Error loading blogs. Please try again later.</p>
+                        <p>Details: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Call the render function when the document is loaded
+        document.addEventListener('DOMContentLoaded', renderBlogPosts);
+    </script>
+</body>
+</html>
