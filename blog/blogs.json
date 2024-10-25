@@ -3,6 +3,6 @@
         "date": "2020-01-01",
         "title": "First Post",
         "description": "Simple description.",
-        "link": "#"
+        "link": "/blog/first-post"
     }
 ]
