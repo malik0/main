@@ -6,7 +6,7 @@ github_username: username
 permalink: /:year/:month/:day/:title/
 
 # Theme settings
-theme: minima
+remote_theme: jekyll/minima
 minima:
   date_format: "%b %-d, %Y"
   social_links:
@@ -21,6 +21,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-remote-theme
 
 # Exclude from processing
 exclude:

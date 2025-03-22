@@ -7,7 +7,7 @@
         <p class="feed-subscribe">
           <a href="{{ 'feed.xml' | relative_url }}">
             <svg class="svg-icon orange">
-              <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use>
+              <use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
             </svg><span>Subscribe</span>
           </a>
         </p>
@@ -15,9 +15,7 @@
       </div>
 
       <div class="footer-col">
-        <ul class="social-media-list">
-          {%- if site.github_username -%}<li><a href="https://github.com/{{ site.github_username }}"><svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg> <span class="username">{{ site.github_username }}</span></a></li>{%- endif -%}
-        </ul>
+        {%- include social.html -%}
       </div>
     </div>
   </div>
