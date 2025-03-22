@@ -4,11 +4,27 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol, e.g. http://example.com
 github_username: username
 permalink: /:year/:month/:day/:title/
+
+# Theme settings
 theme: minima
+minima:
+  date_format: "%b %-d, %Y"
+  social_links:
+    github: username
+
+# Build settings
+markdown: kramdown
+show_excerpts: false
+
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  
-# Build settings
-markdown: kramdown 
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor 
